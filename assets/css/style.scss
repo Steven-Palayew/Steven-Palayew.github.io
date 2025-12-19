@@ -4,16 +4,25 @@
 @import "{{ site.theme }}";
 
 /* =========================
-   Dark scheme override for Tactile
+   Dark scheme override for Tactile (clean + readable)
    ========================= */
 
-/* Page background + base text */
+/* Base typography: make body text more readable */
 html, body {
   background: #0b0b0b !important;
   color: #eaeaea !important;
+
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji" !important;
+  font-size: 18px;
+  line-height: 1.7;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Remove Tactile’s light texture/vignette and make the main panel dark */
+/* Remove Tactile’s light texture/vignette and make main content area dark */
 #container,
 .inner,
 #main_content {
@@ -23,17 +32,16 @@ html, body {
   color: #eaeaea !important;
 }
 
-/* Fix "doubled" / ghosted text caused by theme text-shadows on dark bg */
+/* Fix "doubled" / ghosted text from theme shadows */
 #main_content,
 #main_content * {
   text-shadow: none !important;
   filter: none !important;
 }
 
-/* Typography improvements for readability */
+/* Readability: keep line length sane */
 #main_content {
   max-width: 860px;
-  line-height: 1.6;
 }
 
 /* Headings */
@@ -42,32 +50,52 @@ html, body {
 #main_content h3,
 #main_content h4,
 #main_content h5,
-#main_content h6,
-header h1 {
+#main_content h6 {
   color: #ffffff !important;
+  letter-spacing: 0.2px;
 }
 
-/* Restore a clean divider / “underline” vibe like the original theme */
+/* Keep your big name/header looking like the theme, but remove any shadows */
+header h1 {
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+/* Remove the old header border and replace with a nicer "Impact-style" underline */
 header {
-  border-bottom: 1px solid #2a2a2a !important;
-  padding-bottom: 1rem;
+  border-bottom: none !important;
+  padding-bottom: 1.25rem;
   margin-bottom: 2rem;
 }
 
-/* Links */
+/* Underline directly under the name */
+header h1::after {
+  content: "";
+  display: block;
+  margin-top: 0.6rem;
+  height: 6px;
+  width: 280px;
+  border-radius: 999px;
+
+  /* subtle gradient underline (looks nicer than a flat line on dark) */
+  background: linear-gradient(90deg, #f0f0f0 0%, #4a4a4a 70%, transparent 100%);
+  opacity: 0.9;
+}
+
+/* Links: readable, still “webby” */
 #main_content a,
 header a {
   color: #8ab4f8 !important;
   text-decoration: underline;
   text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
 }
 #main_content a:hover,
 header a:hover {
   color: #c7ddff !important;
 }
 
-/* Lists + subtle separators */
+/* Subtle separators */
 hr {
   border: 0;
   border-top: 1px solid #2a2a2a !important;

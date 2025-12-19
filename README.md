@@ -5,4 +5,6 @@ Previously, I also did my MSc in Computer Science at the University of Toronto a
 
 Email: spalayew [at] gmail [dot] com
 
+[CV](/assets/CV_F25_4.pdf)
+
 [LinkedIn](https://www.linkedin.com/in/steven-palayew/)

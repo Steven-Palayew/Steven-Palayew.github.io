@@ -3,10 +3,6 @@
 
 @import "{{ site.theme }}";
 
-/* =========================
-   Dark scheme override for Tactile (clean + readable)
-   ========================= */
-
 /* Base typography */
 html, body {
   background: #0b0b0b !important;
@@ -25,7 +21,8 @@ html, body {
 /* Dark surfaces */
 #container,
 .inner,
-#main_content {
+#main_content,
+#main_content_wrap {
   background: #0b0b0b !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -55,12 +52,34 @@ html, body {
   letter-spacing: 0.2px;
 }
 
-/* =========================
-   REMOVE ALL THEME DIVIDERS AROUND HEADER/CONTENT
-   (this is what keeps re-appearing as the "second underline")
-   ========================= */
+/* -------------------------
+   THIS is the "second underline"
+   Remove the theme's header→content divider
+   ------------------------- */
 
-/* Header wrapper divider */
+/* Some Tactile builds draw it as a border/shadow on the content wrapper */
+#main_content_wrap,
+#main_content_wrap .inner,
+#container::before,
+#container::after,
+#main_content_wrap::before,
+#main_content_wrap::after {
+  border: 0 !important;
+  border-top: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  content: none !important;
+}
+
+/* Other times it's literally an <hr> as the first element in main content */
+#main_content > hr:first-child {
+  display: none !important;
+}
+
+/* -------------------------
+   Header: keep your underline only
+   ------------------------- */
+
 #header_wrap,
 #header_wrap .inner,
 header {
@@ -69,28 +88,12 @@ header {
   background-image: none !important;
 }
 
-/* Content wrapper divider (THIS is usually the stubborn line) */
-#main_content_wrap,
-#main_content_wrap .inner {
-  border: 0 !important;
-  border-top: 0 !important;
-  box-shadow: none !important;
-  background-image: none !important;
-}
-
-/* Some builds draw lines using pseudo-elements */
 #header_wrap::before,
 #header_wrap::after,
 header::before,
-header::after,
-#main_content_wrap::before,
-#main_content_wrap::after {
+header::after {
   content: none !important;
 }
-
-/* =========================
-   Header styling
-   ========================= */
 
 header {
   padding-bottom: 1.25rem;
@@ -107,7 +110,7 @@ header h1 {
   margin-bottom: 0 !important;
 }
 
-/* Single, thinner, bidirectional gradient underline under the name */
+/* Single, thinner, bidirectional gradient underline */
 header h1::after {
   content: "";
   display: block;
@@ -120,18 +123,15 @@ header h1::after {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    #f0f0f0 20%,
+    #f0f0f0 22%,
     #7a7a7a 50%,
-    #f0f0f0 80%,
+    #f0f0f0 78%,
     transparent 100%
   );
   opacity: 0.95;
 }
 
-/* =========================
-   Links, separators, code, footer
-   ========================= */
-
+/* Links */
 #main_content a,
 header a {
   color: #8ab4f8 !important;
@@ -144,11 +144,13 @@ header a:hover {
   color: #c7ddff !important;
 }
 
+/* Keep <hr> available elsewhere, just style it subtly */
 hr {
   border: 0;
   border-top: 1px solid #2a2a2a !important;
 }
 
+/* Code blocks */
 pre, code {
   background: #111 !important;
   color: #eaeaea !important;
@@ -160,9 +162,8 @@ pre {
   overflow-x: auto;
 }
 
+/* Footer */
 footer, footer * {
   color: #bdbdbd !important;
   text-shadow: none !important;
 }
-
-#header_wrap *, #main_content_wrap * { box-shadow: none !important; }

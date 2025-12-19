@@ -7,7 +7,7 @@
    Dark scheme override for Tactile (clean + readable)
    ========================= */
 
-/* Base typography: make body text more readable */
+/* Base typography */
 html, body {
   background: #0b0b0b !important;
   color: #eaeaea !important;
@@ -22,7 +22,7 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* Remove Tactile’s light texture/vignette and make main content area dark */
+/* Dark surfaces */
 #container,
 .inner,
 #main_content {
@@ -32,14 +32,14 @@ html, body {
   color: #eaeaea !important;
 }
 
-/* Fix "doubled" / ghosted text from theme shadows */
+/* Fix ghost/double text from theme shadows */
 #main_content,
 #main_content * {
   text-shadow: none !important;
   filter: none !important;
 }
 
-/* Readability: keep line length sane */
+/* Readability */
 #main_content {
   max-width: 860px;
 }
@@ -55,34 +55,45 @@ html, body {
   letter-spacing: 0.2px;
 }
 
-/* Keep your big name/header looking like the theme, but remove any shadows */
+/* Keep header name clean */
 header h1 {
   color: #ffffff !important;
   text-shadow: none !important;
+  border-bottom: none !important; /* remove any default underline */
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
-/* Remove the old header border and replace with a nicer "Impact-style" underline */
+/* Header spacing */
 header {
   border-bottom: none !important;
   padding-bottom: 1.25rem;
   margin-bottom: 2rem;
 }
 
-/* Underline directly under the name */
+/* Single, thinner, bidirectional gradient underline under the name */
 header h1::after {
   content: "";
   display: block;
-  margin-top: 0.6rem;
-  height: 6px;
-  width: 280px;
+  margin-top: 0.55rem;
+
+  height: 3px;          /* thinner line */
+  width: 300px;
   border-radius: 999px;
 
-  /* subtle gradient underline (looks nicer than a flat line on dark) */
-  background: linear-gradient(90deg, #f0f0f0 0%, #4a4a4a 70%, transparent 100%);
-  opacity: 0.9;
+  /* bidirectional: fades out on both ends */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #f0f0f0 20%,
+    #7a7a7a 50%,
+    #f0f0f0 80%,
+    transparent 100%
+  );
+  opacity: 0.95;
 }
 
-/* Links: readable, still “webby” */
+/* Links */
 #main_content a,
 header a {
   color: #8ab4f8 !important;

@@ -4,7 +4,7 @@
 @import "{{ site.theme }}";
 
 /* =========================
-   Dark scheme override for Tactile (clean + readable)
+   Dark scheme override for Tactile
    ========================= */
 
 /* Base typography */
@@ -25,11 +25,29 @@ html, body {
 /* Dark surfaces */
 #container,
 .inner,
-#main_content {
+#main_content,
+#main_content_wrap,
+#main_content_wrap .inner {
   background: #0b0b0b !important;
   background-image: none !important;
   box-shadow: none !important;
   color: #eaeaea !important;
+}
+
+/* THIS is usually the “mystery second underline” (border at top of content wrap) */
+#main_content_wrap,
+#main_content_wrap .inner {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+/* In case the theme draws it with pseudo-elements */
+#main_content_wrap::before,
+#main_content_wrap::after,
+#main_content_wrap .inner::before,
+#main_content_wrap .inner::after {
+  content: none !important;
 }
 
 /* Fix ghost/double text from theme shadows */
@@ -56,19 +74,18 @@ html, body {
 }
 
 /* =========================
-   Header: keep your underline, remove the theme's extra one
+   Header: keep your underline, remove theme dividers
    ========================= */
 
-/* Nuke Tactile’s built-in header divider (this is the “second underline”) */
+/* Remove any theme header divider */
 #header_wrap,
 #header_wrap .inner,
 header {
-  border-bottom: 0 !important;
+  border: 0 !important;
   box-shadow: none !important;
   background-image: none !important;
 }
 
-/* Some builds draw it with pseudo-elements */
 #header_wrap::before,
 #header_wrap::after,
 header::before,
@@ -82,18 +99,18 @@ header {
   margin-bottom: 2rem;
 }
 
-/* Keep header name clean (no default underline/border) */
+/* Title */
 header h1 {
   color: #ffffff !important;
   text-shadow: none !important;
-  border-bottom: 0 !important;
+  border: 0 !important;
   box-shadow: none !important;
   background-image: none !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
 }
 
-/* Single, thinner, bidirectional gradient underline under the name */
+/* Single, thinner, bidirectional gradient underline */
 header h1::after {
   content: "";
   display: block;
@@ -114,10 +131,7 @@ header h1::after {
   opacity: 0.95;
 }
 
-/* =========================
-   Links, separators, code, footer
-   ========================= */
-
+/* Links */
 #main_content a,
 header a {
   color: #8ab4f8 !important;
@@ -130,11 +144,13 @@ header a:hover {
   color: #c7ddff !important;
 }
 
+/* Separators (only affects actual <hr> tags in your markdown) */
 hr {
   border: 0;
   border-top: 1px solid #2a2a2a !important;
 }
 
+/* Code blocks */
 pre, code {
   background: #111 !important;
   color: #eaeaea !important;
@@ -146,6 +162,7 @@ pre {
   overflow-x: auto;
 }
 
+/* Footer */
 footer, footer * {
   color: #bdbdbd !important;
   text-shadow: none !important;

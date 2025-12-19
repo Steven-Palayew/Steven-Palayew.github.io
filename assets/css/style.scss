@@ -25,7 +25,6 @@ html, body {
 /* Keep the theme structure, but remove the light paper texture */
 #container,
 .inner,
-#main_content_wrap,
 #main_content {
   background: transparent !important;
   background-image: none !important;
@@ -70,7 +69,7 @@ header a:hover {
 
 /* Your custom underline under the name (bidirectional gradient, thin) */
 header h1 {
-  border-bottom: 0 !important; /* prevent theme underline/border on the h1 */
+  border-bottom: 0 !important;
 }
 
 header h1::after {
@@ -99,9 +98,13 @@ hr {
   border-top: 1px solid #2a2a2a;
 }
 
-/* QUICK FIX: hide only the divider HR directly under the header/content boundary */
-#main_content_wrap hr:first-of-type,
-#main_content > hr:first-child {
+/* FIX: hide the theme-inserted divider <hr> between downloads and main content */
+section#downloads + hr {
+  display: none !important;
+}
+
+/* Fallback: if the theme ever drops #downloads, still hide the direct-child divider */
+.inner > hr {
   display: none !important;
 }
 

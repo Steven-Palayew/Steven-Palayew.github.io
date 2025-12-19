@@ -3,30 +3,37 @@
 
 @import "{{ site.theme }}";
 
-/* Force a real dark surface everywhere */
+/* =========================
+   Dark scheme override for Tactile
+   ========================= */
+
+/* Page background + base text */
 html, body {
   background: #0b0b0b !important;
   color: #eaeaea !important;
 }
 
-/* Tactile’s main wrapper/panel */
+/* Remove Tactile’s light texture/vignette and make the main panel dark */
 #container,
 .inner,
 #main_content {
   background: #0b0b0b !important;
-  color: #eaeaea !important;
-  background-image: none !important; /* removes that light texture/vignette */
+  background-image: none !important;
   box-shadow: none !important;
+  color: #eaeaea !important;
 }
 
-/* Make sure all content inherits readable text */
+/* Fix "doubled" / ghosted text caused by theme text-shadows on dark bg */
 #main_content,
-#main_content p,
-#main_content li,
-#main_content span,
-#main_content strong,
-#main_content em {
-  color: #eaeaea !important;
+#main_content * {
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+/* Typography improvements for readability */
+#main_content {
+  max-width: 860px;
+  line-height: 1.6;
 }
 
 /* Headings */
@@ -38,17 +45,32 @@ html, body {
 #main_content h6,
 header h1 {
   color: #ffffff !important;
-  text-shadow: none !important;
+}
+
+/* Restore a clean divider / “underline” vibe like the original theme */
+header {
+  border-bottom: 1px solid #2a2a2a !important;
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 /* Links */
 #main_content a,
 header a {
   color: #8ab4f8 !important;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
 }
 #main_content a:hover,
 header a:hover {
   color: #c7ddff !important;
+}
+
+/* Lists + subtle separators */
+hr {
+  border: 0;
+  border-top: 1px solid #2a2a2a !important;
 }
 
 /* Code blocks */
@@ -57,3 +79,15 @@ pre, code {
   color: #eaeaea !important;
   border: 1px solid #333 !important;
 }
+pre {
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+/* Footer */
+footer, footer * {
+  color: #bdbdbd !important;
+  text-shadow: none !important;
+}
+

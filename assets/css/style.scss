@@ -3,13 +3,17 @@
 
 @import "{{ site.theme }}";
 
-/* Base typography */
+/* =========================
+   Minimal, stable dark-mode overrides for Tactile
+   ========================= */
+
+/* Base page colors + readable typography */
 html, body {
-  background: #0b0b0b !important;
-  color: #eaeaea !important;
+  background: #0b0b0b;
+  color: #eaeaea;
 
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
-    "Apple Color Emoji", "Segoe UI Emoji" !important;
+    "Apple Color Emoji", "Segoe UI Emoji";
   font-size: 18px;
   line-height: 1.7;
 
@@ -18,27 +22,25 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* Dark surfaces */
+/* Keep the theme structure, but remove the light paper texture */
 #container,
 .inner,
-#main_content,
-#main_content_wrap {
-  background: #0b0b0b !important;
+#main_content_wrap,
+#main_content {
+  background: transparent !important;
   background-image: none !important;
-  box-shadow: none !important;
-  color: #eaeaea !important;
 }
 
-/* Fix ghost/double text from theme shadows */
+/* Ensure the content text is readable */
+#main_content {
+  color: #eaeaea;
+  max-width: 860px;
+}
+
+/* Remove the "double text" effect caused by theme shadows */
 #main_content,
 #main_content * {
   text-shadow: none !important;
-  filter: none !important;
-}
-
-/* Readability */
-#main_content {
-  max-width: 860px;
 }
 
 /* Headings */
@@ -47,70 +49,30 @@ html, body {
 #main_content h3,
 #main_content h4,
 #main_content h5,
-#main_content h6 {
-  color: #ffffff !important;
-  letter-spacing: 0.2px;
-}
-
-/* -------------------------
-   THIS is the "second underline"
-   Remove the theme's header→content divider
-   ------------------------- */
-
-/* Some Tactile builds draw it as a border/shadow on the content wrapper */
-#main_content_wrap,
-#main_content_wrap .inner,
-#container::before,
-#container::after,
-#main_content_wrap::before,
-#main_content_wrap::after {
-  border: 0 !important;
-  border-top: 0 !important;
-  box-shadow: none !important;
-  background-image: none !important;
-  content: none !important;
-}
-
-/* Other times it's literally an <hr> as the first element in main content */
-#main_content > hr:first-child {
-  display: none !important;
-}
-
-/* -------------------------
-   Header: keep your underline only
-   ------------------------- */
-
-#header_wrap,
-#header_wrap .inner,
-header {
-  border: 0 !important;
-  box-shadow: none !important;
-  background-image: none !important;
-}
-
-#header_wrap::before,
-#header_wrap::after,
-header::before,
-header::after {
-  content: none !important;
-}
-
-header {
-  padding-bottom: 1.25rem;
-  margin-bottom: 2rem;
-}
-
+#main_content h6,
 header h1 {
-  color: #ffffff !important;
+  color: #ffffff;
   text-shadow: none !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  background-image: none !important;
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
 }
 
-/* Single, thinner, bidirectional gradient underline */
+/* Links */
+#main_content a,
+header a {
+  color: #8ab4f8;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+#main_content a:hover,
+header a:hover {
+  color: #c7ddff;
+}
+
+/* Your custom underline under the name (bidirectional gradient, thin) */
+header h1 {
+  border-bottom: 0 !important; /* prevent theme underline/border on the h1 */
+}
+
 header h1::after {
   content: "";
   display: block;
@@ -131,30 +93,23 @@ header h1::after {
   opacity: 0.95;
 }
 
-/* Links */
-#main_content a,
-header a {
-  color: #8ab4f8 !important;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-#main_content a:hover,
-header a:hover {
-  color: #c7ddff !important;
-}
-
-/* Keep <hr> available elsewhere, just style it subtly */
+/* Keep HR styling subtle elsewhere */
 hr {
   border: 0;
-  border-top: 1px solid #2a2a2a !important;
+  border-top: 1px solid #2a2a2a;
+}
+
+/* QUICK FIX: hide only the divider HR directly under the header/content boundary */
+#main_content_wrap hr:first-of-type,
+#main_content > hr:first-child {
+  display: none !important;
 }
 
 /* Code blocks */
 pre, code {
-  background: #111 !important;
-  color: #eaeaea !important;
-  border: 1px solid #333 !important;
+  background: #111;
+  color: #eaeaea;
+  border: 1px solid #333;
 }
 pre {
   padding: 0.75rem 1rem;
@@ -164,6 +119,7 @@ pre {
 
 /* Footer */
 footer, footer * {
-  color: #bdbdbd !important;
+  color: #bdbdbd;
   text-shadow: none !important;
 }
+

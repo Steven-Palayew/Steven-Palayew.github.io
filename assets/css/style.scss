@@ -1,0 +1,29 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Your overrides go below */
+body {
+  background: #0b0b0b;
+  color: #f2f2f2;
+}
+
+a {
+  color: #8ab4f8;
+}
+
+a:hover {
+  color: #c3d7ff;
+}
+
+/* Common content blocks */
+pre, code, kbd, samp {
+  color: #f2f2f2;
+}
+
+/* If code blocks look “too light”, force a dark surface */
+pre {
+  background: #111;
+  border: 1px solid #333;
+}

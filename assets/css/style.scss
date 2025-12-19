@@ -55,20 +55,42 @@ html, body {
   letter-spacing: 0.2px;
 }
 
-/* Keep header name clean */
-header h1 {
-  color: #ffffff !important;
-  text-shadow: none !important;
-  border-bottom: none !important; /* remove any default underline */
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
+/* =========================
+   Header: keep your underline, remove the theme's extra one
+   ========================= */
+
+/* Nuke Tactile’s built-in header divider (this is the “second underline”) */
+#header_wrap,
+#header_wrap .inner,
+header {
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* Some builds draw it with pseudo-elements */
+#header_wrap::before,
+#header_wrap::after,
+header::before,
+header::after {
+  content: none !important;
 }
 
 /* Header spacing */
 header {
-  border-bottom: none !important;
   padding-bottom: 1.25rem;
   margin-bottom: 2rem;
+}
+
+/* Keep header name clean (no default underline/border) */
+header h1 {
+  color: #ffffff !important;
+  text-shadow: none !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Single, thinner, bidirectional gradient underline under the name */
@@ -77,11 +99,10 @@ header h1::after {
   display: block;
   margin-top: 0.55rem;
 
-  height: 3px;          /* thinner line */
+  height: 3px;
   width: 300px;
   border-radius: 999px;
 
-  /* bidirectional: fades out on both ends */
   background: linear-gradient(
     90deg,
     transparent 0%,
@@ -93,7 +114,10 @@ header h1::after {
   opacity: 0.95;
 }
 
-/* Links */
+/* =========================
+   Links, separators, code, footer
+   ========================= */
+
 #main_content a,
 header a {
   color: #8ab4f8 !important;
@@ -106,13 +130,11 @@ header a:hover {
   color: #c7ddff !important;
 }
 
-/* Subtle separators */
 hr {
   border: 0;
   border-top: 1px solid #2a2a2a !important;
 }
 
-/* Code blocks */
 pre, code {
   background: #111 !important;
   color: #eaeaea !important;
@@ -124,7 +146,6 @@ pre {
   overflow-x: auto;
 }
 
-/* Footer */
 footer, footer * {
   color: #bdbdbd !important;
   text-shadow: none !important;
